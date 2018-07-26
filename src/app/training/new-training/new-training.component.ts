@@ -3,8 +3,8 @@ import { TrainingService } from '../training.service';
 import { Exercise } from '../exercise.model';
 import { NgForm } from '@angular/forms';
 import { AngularFirestore } from 'angularfire2/firestore';
-import { Observable, Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import {  Subscription } from 'rxjs';
+
 
 
 
