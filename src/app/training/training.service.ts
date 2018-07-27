@@ -42,6 +42,12 @@ export class TrainingService {
 	  //if something changes in the database let’s set our exercisesChanged Subject to the new database set.
             this.exercisesChanged.next([...this.availiableExercises]);
             this.uiService.loadingStateChanged.next(false);
+        },
+        error => {
+            this.exercisesChanged.next(null);
+
+            this.uiService.loadingStateChanged.next(false);
+            this.uiService.showSnackbar('Could Not Load Exercises! Try again later', null, 3000);
         }));
     }
 
