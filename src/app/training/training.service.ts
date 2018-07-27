@@ -4,6 +4,7 @@ import { Exercise } from './exercise.model';
 import { AngularFirestore } from 'angularfire2/firestore';
 import { map } from 'rxjs/operators';
 import {Subscription} from 'rxjs';
+import { UIService } from '../shared/ui.service';
 @Injectable()
 export class TrainingService {
     private availiableExercises: Exercise[] = [];
@@ -13,9 +14,10 @@ export class TrainingService {
     private exercises: Exercise[] = [];
     finishedExercisesChanged = new Subject<Exercise[]>();
     private fbSubs: Subscription[] = [];
-    constructor(private db : AngularFirestore){}
+    constructor(private db : AngularFirestore, private uiService: UIService){}
 
     fetchAvailiableExercises(): void {
+        this.uiService.loadingStateChanged.next(true);
         this.fbSubs.push(this.db
 	//go to the collection
         .collection('availiableExercises')
@@ -39,6 +41,7 @@ export class TrainingService {
             this.availiableExercises = remappedDocsArray;
 	  //if something changes in the database let’s set our exercisesChanged Subject to the new database set.
             this.exercisesChanged.next([...this.availiableExercises]);
+            this.uiService.loadingStateChanged.next(false);
         }));
     }
 
