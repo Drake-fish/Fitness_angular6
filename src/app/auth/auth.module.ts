@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from "../../../node_modules/@angular
 import { CommonModule } from "../../../node_modules/@angular/common";
 import { MaterialModule } from "../material.module";
 import { FlexLayoutModule } from "../../../node_modules/@angular/flex-layout";
+import { AngularFireAuthModule } from "../../../node_modules/angularfire2/auth";
 
 @NgModule({
     declarations: [
@@ -17,7 +18,8 @@ import { FlexLayoutModule } from "../../../node_modules/@angular/flex-layout";
                ReactiveFormsModule,
                CommonModule,
                MaterialModule,
-               FlexLayoutModule
+               FlexLayoutModule,
+               AngularFireAuthModule
              ],
     exports: []
 })
